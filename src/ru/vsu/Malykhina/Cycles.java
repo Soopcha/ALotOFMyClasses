@@ -1,7 +1,9 @@
 package ru.vsu.Malykhina;
 //ЦИКЛЫ for, wile, do wile
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Cycles {
 
@@ -47,19 +49,18 @@ public class Cycles {
             System.out.println(count);
             count++;
 
-            if (count == 5) break; // брейкаться можно
+            if (count == 5) break; // брейкаться можно   BREAK - заверщает цикл
         }
 
         // пропустим нечётные числа выведем только чётные
         count = 0;
         while (count < 10) {
             count++;
-            if ((count % 2) != 0) continue;
+            if ((count % 2) != 0) continue;  // CONTINUE - пропускает одну эттерацию данного цикла
             //если count  не делится на 2  без остатка (те делится с остатком) то continue,
             // при котором мы начинаем цикл сначала( а то что дальше после continue было не смотрится)
             System.out.println(count);
         }
-
 
     }
 
