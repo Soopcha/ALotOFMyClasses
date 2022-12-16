@@ -1,5 +1,8 @@
 package JavaKurses;
 
+import JavaKurses.example.Example1;
+import JavaKurses.model.User;
+
 import java.util.*;
 
 public class CollectionsLearning {
@@ -54,6 +57,18 @@ public class CollectionsLearning {
         List<String> listString = new ArrayList<>();
         List<Integer> listIntege = new ArrayList<>();
         List<Object> listObject = new ArrayList<>();
+
+        System.out.println("------------------------------------------------------->");
+        Example1<User> example1 = new Example1<>();   //создаём объект класса Example1 и передаём в дженерике User
+        //те T(из Example1) поменяется на User
+        System.out.println(example1.get());
+        example1.set(new User("Алеха", 45));
+        System.out.println(example1.get());   // по умолчанию у объектов выполняется метод toString,
+        // а тк мы его в юзере переопределяли то у нас выполняется приколюшка с Hiii
+        System.out.println("------------------------------------------------------->");
+
+
+        //КСТА CTRL + / ----> скоментить/расскоментить
 
 
     }

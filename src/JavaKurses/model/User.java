@@ -1,11 +1,24 @@
-package JavaKurses;
+package JavaKurses.model;
 // OBJECT - Главный клас в джаве, тк все классы наследуются от него
 
-public class User extends Object {
+import JavaKurses.model.BaseObject;
 
-    private int age;
+public class User extends BaseObject {
     // но обычно пишется public class User{} но имеется всегда ввиду public class User extends Object
     // те наш класс User может использовать все поля и методы класса Object
+    private int age;
+    private String name;
+
+    public User(String name, int age){
+        this.name = name;
+        this.age = age;
+    }
+    public User(){};
+
+    public void setName(String name){ this.name = name; }
+    public void setAge(Integer age){ this.age = age; }
+
+
 
 
     // Аннотации - пометки, с помощью которых программист указывает компилятору Java  и средствам разработки что делать
