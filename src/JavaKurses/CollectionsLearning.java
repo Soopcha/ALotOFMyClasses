@@ -1,6 +1,9 @@
 package JavaKurses;
 
 import JavaKurses.example.Example1;
+import JavaKurses.example.Example2;
+import JavaKurses.model.BaseObject;
+import JavaKurses.model.ChildObject;
 import JavaKurses.model.User;
 
 import java.util.*;
@@ -67,9 +70,51 @@ public class CollectionsLearning {
         // а тк мы его в юзере переопределяли то у нас выполняется приколюшка с Hiii
         System.out.println("------------------------------------------------------->");
 
+        Example2.simpleInit(new User()); // по идее от метода simpleInit нет толку??
+
+        Example2<User> example2Peremennaia = Example2.init(new User());  // тоесть вместо T подставляется юзер
+        example2Peremennaia.set(new User("Alex", 30));
+        System.out.println(example2Peremennaia.getInstance());
+        System.out.println("------------------------------------------------------->");
+
 
         //КСТА CTRL + / ----> скоментить/расскоментить
 
+
+
+        //ВАЙЛД кард
+        List<BaseObject> listBaseObject2 = new ArrayList<>();
+        List<User> listUser2= new ArrayList<>();
+        List<ChildObject> listChilObject2 = new ArrayList<>();
+
+        example1(listBaseObject2);
+        example1(listUser2);
+        example1(listChilObject2);
+
+        //example2(listBaseObject2);  тут будет ошибка тк listBaseObject2 выше по иерархии
+        example2(listUser2);
+        example2(listChilObject2);
+
+        example3(listBaseObject2);
+        example3(listUser2);
+        // example3(listChilObject2);  тут будет ошибка тк listChilObject2 ниже по иерархии
+
+    }
+    // вайлд кард - знак ?, который позволяет указать какие дженерики могут передаваться в аргументах данному методу
+    // если знак ? - те лист с абсолютно любыми джинериками можем передавать
+
+    public static void example1(List<?> list){  // кста тоже самое что и просто написать List list
+        // public static void example1(List list)
+
+    }
+    //Вайлд кард, который может принимать только дженерик юзера и его потомков (чайлдОбджект, тк он наследуется от юхзера)
+    //extends - User и вниз по иерархии
+    public static void example2(List<? extends User> list){
+
+    }
+    //super - User и вверх по иерархии(те можем ещё и родителей использовать)
+    //те в данном случае User, BaseObject и Object (тк BaseObject неявно наследуется от Object)
+    public static void example3(List<? super User> list){
 
     }
 }
