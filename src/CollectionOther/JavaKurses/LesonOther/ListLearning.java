@@ -1,4 +1,4 @@
-package JavaKurses.LesonOther;
+package CollectionOther.JavaKurses.LesonOther;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

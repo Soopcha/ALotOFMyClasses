@@ -1,10 +1,10 @@
-package JavaKurses;
+package CollectionOther.JavaKurses;
 
-import JavaKurses.example.Example1;
-import JavaKurses.example.Example2;
-import JavaKurses.model.BaseObject;
-import JavaKurses.model.ChildObject;
-import JavaKurses.model.User;
+import CollectionOther.JavaKurses.example.Example1;
+import CollectionOther.JavaKurses.example.Example2;
+import CollectionOther.JavaKurses.model.BaseObject;
+import CollectionOther.JavaKurses.model.ChildObject;
+import CollectionOther.JavaKurses.model.User;
 
 import java.util.*;
 

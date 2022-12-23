@@ -1,4 +1,4 @@
-package JavaKurses.example;
+package CollectionOther.JavaKurses.example;
 
 public class Example1 <T>{  //мы написали собственный класс с использованием дженериков
     //наш дженерик - T

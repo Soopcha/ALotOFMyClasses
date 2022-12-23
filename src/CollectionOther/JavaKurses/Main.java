@@ -1,6 +1,6 @@
-package JavaKurses;
+package CollectionOther.JavaKurses;
 
-import JavaKurses.model.User;
+import CollectionOther.JavaKurses.model.User;
 
 public class Main {
     public static void main(String[] args) {

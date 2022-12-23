@@ -1,7 +1,5 @@
-package JavaKurses.model;
+package CollectionOther.JavaKurses.model;
 // OBJECT - Главный клас в джаве, тк все классы наследуются от него
-
-import JavaKurses.model.BaseObject;
 
 public class User extends BaseObject {
     // но обычно пишется public class User{} но имеется всегда ввиду public class User extends Object
