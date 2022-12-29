@@ -42,5 +42,19 @@ public class Main {
             Map.Entry<String, Integer> entry = iterator.next();
             System.out.println(entry);
         }
+
+        System.out.println("-----------------------------------------");
+        Map<Integer, String> map2 = new  HashMap<>();
+        map2.put(19,"text1");
+        map2.put(35,"text2");
+        map2.put(17,"text3");
+        map2.put(4,"text4");
+        map2.put(16,"text5");
+        map2.put(null,"text6");
+        map2.put(19,"text7");
+
+        for (Map.Entry<Integer, String> entry : map2.entrySet()) {
+            System.out.println(entry);
+        }
     }
 }
