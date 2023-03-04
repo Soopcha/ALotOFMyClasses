@@ -2,6 +2,9 @@ package CollectionOther.OnSolomaLesson.SEmestr2;
 
 /*
 класс для списка целиком - те тут будут те методы, которые мы хотим видеть операции в списке целиком
+ (деламе кста ОДНОСВЯЗАННЫЙ список)
+ двусвязанный ещё + ссылка в каждой ячейке на предыдущем эл тоже
+ Там ещё если реализовать перебор с итератором то можно и тестить класс
  */
 public class SimpleLinkedList<T> {
 
@@ -11,8 +14,9 @@ public class SimpleLinkedList<T> {
         }
     }
 
-    private class SimpleLinkedListNode<T> { //внутренний класс
+    private class SimpleLinkedListNode<T> { //внутренний класс (типо хранит по одному значению и ссыль на следующее)
         public T value; // паблик чтобы не реализовать методы гет и сет, но тк всё равно к классу обращаться будем чисто из верхнего класса то инкапсуляция сохраняется
+        //  value- это ЗНАЧЕНИЕ
         public SimpleLinkedListNode<T> next;
 
         public SimpleLinkedListNode(T value, SimpleLinkedListNode<T> next) {
@@ -21,7 +25,7 @@ public class SimpleLinkedList<T> {
         }
 
         public SimpleLinkedListNode(T value) {
-            this(value, null);
+            this(value, null); //этот конструктор отправляет нас к конструктору выше
         }
     }
 
@@ -31,7 +35,7 @@ public class SimpleLinkedList<T> {
 
     public void addFirst(T value) { // value - перевод: значение
         // операция добавления эл в начало списка
-        head = new SimpleLinkedListNode<>(value);
+        head = new SimpleLinkedListNode<>(value, head);
         if (count == 0){ // те если список был пустой
             tail = head;
         }
@@ -43,8 +47,8 @@ public class SimpleLinkedList<T> {
         if(count == 0){ //если не было эл в списке
             head = tail = temp;
         } else {
-            tail.next = temp;
-            tail = temp;
+            tail.next = temp;  // обновили типо ссыль на след объект в классе node
+            tail = temp; // теперь в хвосте лежит переменная
         }
         count++;
     }
@@ -55,9 +59,19 @@ public class SimpleLinkedList<T> {
         }
     }
 
+    private SimpleLinkedListNode<T> getNode(int index){ //по индексу будет возвращать элемент
+        int i = 0; // считаем индексы элементов нашего списка
+        for (SimpleLinkedListNode<T> curr = head; curr != null; curr = curr.next){
+            if (i == index){
+                return curr;
+            }
+        }
+        return null;//по идее до этой операции никогда не дойдём
+    }
+
     public T removeFirst() throws SimpleLinkedListException { //удаление эл из начала списка(+ нужно исключение если вообще эл нет в списке)
         checkEmpty();
-        T value  = head.value;;
+        T value  = head.value;
         head = head.next;
         if (count == 1){
             tail = null;
@@ -66,28 +80,89 @@ public class SimpleLinkedList<T> {
         return value;
     }
 
-    public T removeLast() {
+
+
+    public T removeLast() throws SimpleLinkedListException{ // удалить конец
+        /*checkEmpty();
+        T value = tail.value; // запоминаем значение, которое мы будем удалять
+        if(count == 1){
+            head = tail = null;
+        } else {
+            SimpleLinkedListNode<T> prev = getNode(count -2); // получили предпоследний эл
+            prev.next = null; // нехт у прдпоследего эл равен null
+            tail = prev;
+        }
+        count--;
+        return value;
+
+         */ // или можно так:
+         return remove(count - 1);
 
     }
 
-    public T remove() {
-
+    public T remove(int index) throws SimpleLinkedListException {
+        T value;
+        checkEmpty();
+        if (index <0 || index >= count){
+            throw new SimpleLinkedListException("Некоректный индекс");
+        }
+        if (index == 0){
+            value = head.value;
+            head = head.next;
+        } else {
+            SimpleLinkedListNode<T> prev = getNode(index - 1); // нашли предыдущий эл
+            SimpleLinkedListNode<T> curr = prev.next;
+            value = curr.value;
+            prev.next = curr.next;
+            if (index == count -1){ //если это был последний эл, что мы удаляли
+                tail = prev;
+            }
+            // а если бы prev.next = prev.next.next;  то: (можно было и так)
+            //                              |  (эл, который нам надо удалить)
+            //                              V
+            // [           next]--->[           next]--->[           next]--->
+            //   ^                                              ^
+            //   |  (prev)                                      | (а ссыдка next должна быть на next.next по отношению к prev)
+        }
+        count--;
+        return value; //возвращаем удолённый эл
     }
 
-    public T insert(int index, T value) { // вставить эл
-
+    public void insert(int index, T value)throws SimpleLinkedListException { // вставить эл
+        if (index < 0 || index > count){
+            throw new SimpleLinkedListException("Некоректный индекс");
+        }
+        if (index == 0){ // вставление эл в начало списка
+            addFirst(value);
+        } else {
+            SimpleLinkedListNode<T> prev = getNode(index - 1);
+            prev.next = new SimpleLinkedListNode<>(value, prev.next);
+            if (index == count){
+                tail = prev.next;
+            }
+        }
+        count++;
     }
 
     public int size() {
-
+        return count;
     }
 
-    public T getFirst() {
-
+    public T getFirst() throws SimpleLinkedListException {
+        checkEmpty();
+        return head.value;
     }
 
-    public T getLast() {
+    public T getLast() throws SimpleLinkedListException {
+        checkEmpty();
+        return tail.value;
+    }
 
+    public T get (int index) throws SimpleLinkedListException{
+        if (index < 0 || index >= count){
+            throw new SimpleLinkedListException("Некоректный индекс");
+        }
+        return getNode(index).value;
     }
 
 }
