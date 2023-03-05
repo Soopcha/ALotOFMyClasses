@@ -1,4 +1,4 @@
-package CollectionOther.OnSolomaLesson.SEmestr2;
+package CollectionOther.OnSolomaLesson.SEmestr2.StackAndQueue;
 
 /*
 класс для списка целиком - те тут будут те методы, которые мы хотим видеть операции в списке целиком

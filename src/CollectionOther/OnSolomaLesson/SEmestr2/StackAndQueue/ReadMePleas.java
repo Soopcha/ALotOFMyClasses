@@ -1,4 +1,4 @@
-package CollectionOther.OnSolomaLesson.SEmestr2;
+package CollectionOther.OnSolomaLesson.SEmestr2.StackAndQueue;
 /*
 Динамические структуры данных(размер может изменяться после создания)
 Списки, словари(ключ-значение), множества(есть только ключи),
